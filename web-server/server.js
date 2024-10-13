@@ -1,13 +1,4 @@
-/*  by Naufal Taufiq Ridwan
-    Github : https://github.com/n0l3r
 
-    Dockerized, Webapp/Server, and Cloud deployable by timmbobb
-    Github : https://github.com/timmbobb
-
-    Uses yt-dlp as a temporary fix
-
-    Don't remove credit.
-*/
 
 const express = require('express');
 const { exec } = require('child_process');

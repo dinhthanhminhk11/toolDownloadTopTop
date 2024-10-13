@@ -324,139 +324,140 @@ const getIdVideo = async (url) => {
 };
 
 (async () => {
+    console.log("checkTesst")
     // cái này text comment mẹ nó đi
     // const header =
     //     "\r\n /$$$$$$$$ /$$$$$$ /$$   /$$ /$$$$$$$$ /$$$$$$  /$$   /$$       /$$$$$$$   /$$$$$$  /$$      /$$ /$$   /$$ /$$        /$$$$$$   /$$$$$$  /$$$$$$$  /$$$$$$$$ /$$$$$$$ \r\n|__  $$__/|_  $$_/| $$  /$$/|__  $$__//$$__  $$| $$  /$$/      | $$__  $$ /$$__  $$| $$  /$ | $$| $$$ | $$| $$       /$$__  $$ /$$__  $$| $$__  $$| $$_____/| $$__  $$\r\n   | $$     | $$  | $$ /$$/    | $$  | $$  \\ $$| $$ /$$/       | $$  \\ $$| $$  \\ $$| $$ /$$$| $$| $$$$| $$| $$      | $$  \\ $$| $$  \\ $$| $$  \\ $$| $$      | $$  \\ $$\r\n   | $$     | $$  | $$$$$/     | $$  | $$  | $$| $$$$$/        | $$  | $$| $$  | $$| $$/$$ $$ $$| $$ $$ $$| $$      | $$  | $$| $$$$$$$$| $$  | $$| $$$$$   | $$$$$$$/\r\n   | $$     | $$  | $$  $$     | $$  | $$  | $$| $$  $$        | $$  | $$| $$  | $$| $$$$_  $$$$| $$  $$$$| $$      | $$  | $$| $$__  $$| $$  | $$| $$__/   | $$__  $$\r\n   | $$     | $$  | $$\\  $$    | $$  | $$  | $$| $$\\  $$       | $$  | $$| $$  | $$| $$$/ \\  $$$| $$\\  $$$| $$      | $$  | $$| $$  | $$| $$  | $$| $$      | $$  \\ $$\r\n   | $$    /$$$$$$| $$ \\  $$   | $$  |  $$$$$$/| $$ \\  $$      | $$$$$$$/|  $$$$$$/| $$/   \\  $$| $$ \\  $$| $$$$$$$$|  $$$$$$/| $$  | $$| $$$$$$$/| $$$$$$$$| $$  | $$\r\n   |__/   |______/|__/  \\__/   |__/   \\______/ |__/  \\__/      |_______/  \\______/ |__/     \\__/|__/  \\__/|________/ \\______/ |__/  |__/|_______/ |________/|__/  |__/\r\n\n by n0l3r (https://github.com/n0l3r)\n";
     // console.log(chalk.blue(header));
-    const choice = await getChoice();
-    var listVideo = [];
-    if (choice.choice === "Mass Download (Username)") {
-        const usernameInput = await getInput(
-            "Enter the username with @ (e.g. @username) : "
-        );
-        const username = usernameInput;
+    // const choice = await getChoice();
+    // var listVideo = [];
+    // if (choice.choice === "Mass Download (Username)") {
+    //     const usernameInput = await getInput(
+    //         "Enter the username with @ (e.g. @username) : "
+    //     );
+    //     const username = usernameInput;
 
-        console.log(username)
+    //     console.log(username)
 
-        listVideo = await getListVideoByUsername(username);
-        if (listVideo.length === 0) {
-            console.log(chalk.yellow("[!] Error: No video found"));
-            exit();
-        }
-    } else if (choice.choice === "Mass Download with (txt)") {
-        var urls = [];
-        // Get URL from file
-        const fileInput = await inquirer.prompt([
-            {
-                type: "fuzzypath",
-                name: "input",
-                excludePath: (nodePath) => {
-                    return (
-                        nodePath.includes("node_modules") ||
-                        nodePath.includes(".git")
-                    );
-                },
-                // excludePath :: (String) -> Bool
-                // excludePath to exclude some paths from the file-system scan
-                excludeFilter: (nodePath) => {
-                    if (nodePath.includes(".txt")) console.log(nodePath);
-                    return !nodePath.endsWith(".txt");
-                },
-                // excludeFilter :: (String) -> Bool
-                // excludeFilter to exclude some paths from the final list, e.g. '.'
-                itemType: "file",
-                // itemType :: 'any' | 'directory' | 'file'
-                // specify the type of nodes to display
-                // default value: 'any'
-                // example: itemType: 'file' - hides directories from the item list
-                rootPath: __dirname,
-                // rootPath :: String
-                // Root search directory
-                message: "Select a target directory for your component:",
-                default: "list.txt",
-                suggestOnly: false,
-                // suggestOnly :: Bool
-                // Restrict prompt answer to available choices or use them as suggestions
-                depthLimit: 5,
-                // depthLimit :: integer >= 0
-                // Limit the depth of sub-folders to scan
-                // Defaults to infinite depth if undefined
-            },
-        ]);
+    //     listVideo = await getListVideoByUsername(username);
+    //     if (listVideo.length === 0) {
+    //         console.log(chalk.yellow("[!] Error: No video found"));
+    //         exit();
+    //     }
+    // } else if (choice.choice === "Mass Download with (txt)") {
+    //     var urls = [];
+    //     // Get URL from file
+    //     const fileInput = await inquirer.prompt([
+    //         {
+    //             type: "fuzzypath",
+    //             name: "input",
+    //             excludePath: (nodePath) => {
+    //                 return (
+    //                     nodePath.includes("node_modules") ||
+    //                     nodePath.includes(".git")
+    //                 );
+    //             },
+    //             // excludePath :: (String) -> Bool
+    //             // excludePath to exclude some paths from the file-system scan
+    //             excludeFilter: (nodePath) => {
+    //                 if (nodePath.includes(".txt")) console.log(nodePath);
+    //                 return !nodePath.endsWith(".txt");
+    //             },
+    //             // excludeFilter :: (String) -> Bool
+    //             // excludeFilter to exclude some paths from the final list, e.g. '.'
+    //             itemType: "file",
+    //             // itemType :: 'any' | 'directory' | 'file'
+    //             // specify the type of nodes to display
+    //             // default value: 'any'
+    //             // example: itemType: 'file' - hides directories from the item list
+    //             rootPath: __dirname,
+    //             // rootPath :: String
+    //             // Root search directory
+    //             message: "Select a target directory for your component:",
+    //             default: "list.txt",
+    //             suggestOnly: false,
+    //             // suggestOnly :: Bool
+    //             // Restrict prompt answer to available choices or use them as suggestions
+    //             depthLimit: 5,
+    //             // depthLimit :: integer >= 0
+    //             // Limit the depth of sub-folders to scan
+    //             // Defaults to infinite depth if undefined
+    //         },
+    //     ]);
 
-        // await getInput("Enter the file path : ");
-        const file = fileInput.input;
+    //     // await getInput("Enter the file path : ");
+    //     const file = fileInput.input;
 
-        if (!fs.existsSync(file)) {
-            console.log(chalk.red("[X] Error: File not found"));
-            exit();
-        }
+    //     if (!fs.existsSync(file)) {
+    //         console.log(chalk.red("[X] Error: File not found"));
+    //         exit();
+    //     }
 
-        // read file line by line
-        const rl = readline.createInterface({
-            input: fs.createReadStream(file),
-            crlfDelay: Infinity,
-        });
+    //     // read file line by line
+    //     const rl = readline.createInterface({
+    //         input: fs.createReadStream(file),
+    //         crlfDelay: Infinity,
+    //     });
 
-        for await (const line of rl) {
-            if (urls.includes(line)) {
-                console.log(
-                    chalk.yellow(`[!] Skipping duplicate entry: ${line}`)
-                );
-                continue;
-            }
-            urls.push(line);
-            console.log(chalk.green(`[*] Found URL: ${line}`));
-        }
+    //     for await (const line of rl) {
+    //         if (urls.includes(line)) {
+    //             console.log(
+    //                 chalk.yellow(`[!] Skipping duplicate entry: ${line}`)
+    //             );
+    //             continue;
+    //         }
+    //         urls.push(line);
+    //         console.log(chalk.green(`[*] Found URL: ${line}`));
+    //     }
 
-        for (var i = 0; i < urls.length; i++) {
-            const url = await getRedirectUrl(urls[i]);
-            listVideo.push(url);
-        }
-    } else {
-        const urlInput = await getInput("Enter the URL: ");
-        console.log(`url input ${urlInput}`)
+    //     for (var i = 0; i < urls.length; i++) {
+    //         const url = await getRedirectUrl(urls[i]);
+    //         listVideo.push(url);
+    //     }
+    // } else {
+    //     const urlInput = await getInput("Enter the URL: ");
+    //     console.log(`url input ${urlInput}`)
 
-        for (const url of urlInput) {
-            const resolvedUrl = await getRedirectUrl(url);
-            listVideo.push(resolvedUrl);
-        }
-    }
+    //     for (const url of urlInput) {
+    //         const resolvedUrl = await getRedirectUrl(url);
+    //         listVideo.push(resolvedUrl);
+    //     }
+    // }
 
-    console.log(chalk.green(`[!] Found ${listVideo.length} video`));
+    // console.log(chalk.green(`[!] Found ${listVideo.length} video`));
 
-    let deleted_videos_count = 0;
-    for (var i = 0; i < listVideo.length; i++) {
-        console.log(
-            chalk.green(`[*] Downloading video ${i + 1} of ${listVideo.length}`)
-        );
-        console.log(chalk.green(`[*] URL: ${listVideo[i]}`));
-        var data = await getVideo(
-            listVideo[i],
-            choice.type == "With Watermark"
-        );
+    // let deleted_videos_count = 0;
+    // for (var i = 0; i < listVideo.length; i++) {
+    //     console.log(
+    //         chalk.green(`[*] Downloading video ${i + 1} of ${listVideo.length}`)
+    //     );
+    //     console.log(chalk.green(`[*] URL: ${listVideo[i]}`));
+    //     var data = await getVideo(
+    //         listVideo[i],
+    //         choice.type == "With Watermark"
+    //     );
 
-        // check if video was deleted => data empty
-        if (data == null) {
-            console.log(chalk.yellow(`[!] Video ${i + 1} was deleted!`));
-            deleted_videos_count++;
-            continue;
-        }
+    //     // check if video was deleted => data empty
+    //     if (data == null) {
+    //         console.log(chalk.yellow(`[!] Video ${i + 1} was deleted!`));
+    //         deleted_videos_count++;
+    //         continue;
+    //     }
 
-        downloadMedia(data)
-            .then(() => {
-                console.log(chalk.green("[+] Downloaded successfully"));
-            })
-            .catch((err) => {
-                console.log(chalk.red("[X] Error: " + err));
-            });
-    }
+    //     downloadMedia(data)
+    //         .then(() => {
+    //             console.log(chalk.green("[+] Downloaded successfully"));
+    //         })
+    //         .catch((err) => {
+    //             console.log(chalk.red("[X] Error: " + err));
+    //         });
+    // }
 
-    if (deleted_videos_count > 0) {
-        console.log(
-            chalk.yellow(
-                `[!] ${deleted_videos_count} of ${listVideo.length} videos were deleted!`
-            )
-        );
-    }
+    // if (deleted_videos_count > 0) {
+    //     console.log(
+    //         chalk.yellow(
+    //             `[!] ${deleted_videos_count} of ${listVideo.length} videos were deleted!`
+    //         )
+    //     );
+    // }
 })();
